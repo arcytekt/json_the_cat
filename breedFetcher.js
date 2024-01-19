@@ -10,7 +10,7 @@ const request = require('request');
 const apiURL = 'https://api.thecatapi.com/v1/breeds/search';
 
 const fetchBreedData = function(breedName, callback) {
-  request(`${apiURL}?q=${breedName}`, (error, response, body)=> {
+  request(`${apiURL}?q=${breedName}`, (error, response, body) => {
     if (error) {
       callback(`Request error: ${error}`);
     } else {
@@ -29,17 +29,4 @@ const fetchBreedData = function(breedName, callback) {
   });
 };
 
-//retrieve breed name from command line arg
-const breedName = process.argv[2];
-
-if (!breedName) {
-  console.log('Please provide breed name in command line');
-} else {
-  fetchBreedData(breedName, (error, description) => {
-    if (error) {
-      console.log(error);
-    } else {
-      console.log(`${breedName} Description: ${description}`);
-    }
-  });
-}
+module.exports = { fetchBreedData };
